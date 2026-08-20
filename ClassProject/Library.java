@@ -28,7 +28,7 @@ public class Library {
         int pages = myObj.nextInt();
         myObj.nextLine();
 
-        Book newBook = new Book(title.toLowerCase(), author, year, pages);
+        Book newBook = new Book(title, author, year, pages);
 
         return newBook;
     }
@@ -63,7 +63,11 @@ public class Library {
                     showLibrary(books);
                     break;
                 case "2":
-                    books.put(addBook().getTitle().toLowerCase(), addBook());
+                    Book newBook = addBook();
+
+                    books.put(
+                            newBook.getTitle().toLowerCase(),
+                            newBook);
                     break;
                 case "3":
                     findBook(books);
