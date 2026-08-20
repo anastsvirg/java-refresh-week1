@@ -38,12 +38,17 @@ public class Library {
         String title = myObj.nextLine();
         Book book = books.get(title.toLowerCase());
 
+        if (book == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+
         book.displayInfo();
     }
 
     public static void main(String[] args) {
 
-        Boolean isRunning = true;
+        boolean isRunning = true;
 
         Book bellJar = new Book("The Bell Jar", "Sylvia Plath", 2023, 234);
         Book milkFed = new Book("Milk Fed", "Melissa Broder", 2025, 289);
