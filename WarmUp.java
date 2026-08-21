@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class WarmUp {
 
@@ -50,6 +52,10 @@ public class WarmUp {
 
     }
 
+    static <T> void printItems(List<T> items) {
+        System.out.println(items);
+    }
+
     public static void main(String[] args) {
 
         int[] testArray = { 2, 3, 2, 5, 7, 2 };
@@ -61,6 +67,20 @@ public class WarmUp {
 
         System.out.println(testString);
         System.out.println(removeDuplicates(testString));
+
+        List<String> testStringGenerics = new ArrayList<String>();
+        List<Integer> testIntegerGenerics = new ArrayList<Integer>();
+
+        testStringGenerics.add("Bloo");
+        testStringGenerics.add("Blee");
+        testStringGenerics.add("Blaa");
+
+        testIntegerGenerics.add(5);
+        testIntegerGenerics.add(7);
+        testIntegerGenerics.add(11);
+
+        printItems(testStringGenerics);
+        printItems(testIntegerGenerics);
 
     }
 
