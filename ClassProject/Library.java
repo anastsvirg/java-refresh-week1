@@ -1,5 +1,6 @@
 package ClassProject;
 
+import java.time.Year;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -22,10 +23,40 @@ public class Library {
         String author = myObj.nextLine();
 
         System.out.print("Enter a book year: ");
-        int year = myObj.nextInt();
+        int year;
+        do {
+            try {
+                year = myObj.nextInt();
+            } catch (Exception e) {
+                System.out.println("Please enter a numeric value!");
+                continue;
+            }
+
+            if (year < 0 || year > Year.now().getValue()) {
+                throw new ArithmeticException("Invalid year");
+            }
+
+            break;
+
+        } while (true);
 
         System.out.print("Enter a number of pages: ");
-        int pages = myObj.nextInt();
+        int pages;
+        do {
+            try {
+                pages = myObj.nextInt();
+            } catch (Exception e) {
+                System.out.println("Please enter a numeric value!");
+                continue;
+            }
+
+            if (pages < 1 || pages > 1000) {
+                throw new ArithmeticException("Invalid number of pages");
+            }
+
+            break;
+
+        } while (true);
         myObj.nextLine();
 
         Book newBook = new Book(title, author, year, pages);
