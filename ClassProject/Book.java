@@ -46,7 +46,7 @@ public class Book {
         this.pages = pages;
     }
 
-    void displayInfo() {
+    public void displayInfo() {
         System.out.printf(
                 "\"%s\" by %s (%d), %d pages, long book: %s%n",
                 getTitle(),
