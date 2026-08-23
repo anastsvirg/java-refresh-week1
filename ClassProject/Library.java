@@ -2,6 +2,7 @@ package ClassProject;
 
 import java.time.Year;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
@@ -27,13 +28,15 @@ public class Library {
         do {
             try {
                 year = myObj.nextInt();
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Please enter a numeric value!");
+                myObj.nextLine();
                 continue;
             }
 
             if (year < 0 || year > Year.now().getValue()) {
-                throw new ArithmeticException("Invalid year");
+                System.out.println("Please enter a valid year.");
+                continue;
             }
 
             break;
@@ -45,8 +48,9 @@ public class Library {
         do {
             try {
                 pages = myObj.nextInt();
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Please enter a numeric value!");
+                myObj.nextLine();
                 continue;
             }
 
