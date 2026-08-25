@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class WarmUp {
     static String removeDuplicates(String text) {
 
         HashSet<String> letters = new HashSet<String>();
-        String newText = "";
+        StringBuilder result = new StringBuilder();
 
         String[] splitText = text.trim().split("\\s+");
 
@@ -43,12 +42,12 @@ public class WarmUp {
 
             if (!letters.contains(word)) {
                 letters.add(word);
-                newText += " " + word;
+                result.append(word).append(" ");
             }
 
         }
 
-        return newText.trim();
+        return result.toString().trim();
 
     }
 
