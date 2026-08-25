@@ -1,123 +1,41 @@
 package ClassProject;
 
-import java.time.Year;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
 
-    static Scanner myObj = new Scanner(System.in);
+    private HashMap<String, Book> books;
 
-    static void showLibrary(HashMap<String, Book> books) {
+    public Library() {
+        this.books = new HashMap<>();
+    }
+
+    public Library(HashMap<String, Book> books) {
+        this.books = books;
+    }
+
+    public void showLibrary() {
+        HashMap<String, Book> books = getLibrary();
         for (Book book : books.values()) {
             book.displayInfo();
         }
     }
 
-    static Book addBook() {
-
-        System.out.print("Enter a book title: ");
-        String title = myObj.nextLine();
-
-        System.out.print("Enter an author: ");
-        String author = myObj.nextLine();
-
-        System.out.print("Enter a book year: ");
-        int year;
-        do {
-            try {
-                year = myObj.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter a numeric value!");
-                myObj.nextLine();
-                continue;
-            }
-
-            if (year < 0 || year > Year.now().getValue()) {
-                System.out.println("Please enter a valid year.");
-                continue;
-            }
-
-            break;
-
-        } while (true);
-
-        System.out.print("Enter a number of pages: ");
-        int pages;
-        do {
-            try {
-                pages = myObj.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter a numeric value!");
-                myObj.nextLine();
-                continue;
-            }
-
-            if (pages < 1 || pages > 1000) {
-                throw new ArithmeticException("Invalid number of pages");
-            }
-
-            break;
-
-        } while (true);
-        myObj.nextLine();
-
-        Book newBook = new Book(title, author, year, pages);
-
-        return newBook;
+    public void addBook(Book book) {
+        books.put(
+                book.getTitle().toLowerCase(),
+                book);
     }
 
-    static void findBook(HashMap<String, Book> books) {
-        System.out.print("Enter a title: ");
-        String title = myObj.nextLine();
-        Book book = books.get(title.toLowerCase());
-
-        if (book == null) {
-            System.out.println("Book not found.");
-            return;
-        }
-
-        book.displayInfo();
+    public HashMap<String, Book> getLibrary() {
+        return this.books;
     }
 
-    public static void main(String[] args) {
+    public Book findBook(String title) {
 
-        boolean isRunning = true;
-
-        Book bellJar = new Book("The Bell Jar", "Sylvia Plath", 2023, 234);
-        Book milkFed = new Book("Milk Fed", "Melissa Broder", 2025, 289);
-        Book starvSaints = new Book("The Starving Saints", "Caitlin Starling", 2023, 344);
-
-        HashMap<String, Book> books = new HashMap<String, Book>();
-        books.put(bellJar.getTitle().toLowerCase(), bellJar);
-        books.put(milkFed.getTitle().toLowerCase(), milkFed);
-        books.put(starvSaints.getTitle().toLowerCase(), starvSaints);
-
-        do {
-
-            System.out.println(
-                    "To see all of your books in the library enter 1\nTo add a new book enter 2\nTo search by title enter 3\nTo exit enter 4");
-            switch (myObj.nextLine()) {
-                case "1":
-                    showLibrary(books);
-                    break;
-                case "2":
-                    Book newBook = addBook();
-
-                    books.put(
-                            newBook.getTitle().toLowerCase(),
-                            newBook);
-                    break;
-                case "3":
-                    findBook(books);
-                    break;
-                default:
-                    isRunning = false;
-                    break;
-            }
-
-        } while (isRunning);
+        HashMap<String, Book> books = getLibrary();
+        return books.get(title.toLowerCase());
 
     }
 }
