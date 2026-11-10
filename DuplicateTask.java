@@ -7,11 +7,12 @@ public class DuplicateTask {
 
         HashSet<Integer> nums = new HashSet<Integer>();
 
+        boolean wasAdded;
+
         for (int num : numbers) {
-            if (nums.contains(num)) {
+            wasAdded = nums.add(num);
+            if(wasAdded){
                 return true;
-            } else {
-                nums.add(num);
             }
         }
 

@@ -10,31 +10,6 @@ public class MaximumTask {
 
         int maxNum = numbers[0];
 
-        /*
-         * if (numbers.length == 0) {
-         * System.out.
-         * println("The array is empty. The default maximum was passed as a result.");
-         * return maxNum;
-         * }
-         * 
-         * // looked up which data set i needed to use and how they work
-         * 
-         * // I used TreeSet because it's a collection with no duplicates in sorted
-         * order,
-         * // which helps to store the values. The complexity should be O(n) cuz we only
-         * // change the size of an array
-         * 
-         * // I don't know what's auxiliary space complexity is
-         * TreeSet<Integer> nums = new TreeSet<>();
-         * 
-         * for (int num : numbers) {
-         * nums.add(num);
-         * }
-         * 
-         * // looked up how to find last value
-         * maxNum = nums.last();
-         */
-
         for (int num : numbers) {
             if (num > maxNum) {
                 maxNum = num;
