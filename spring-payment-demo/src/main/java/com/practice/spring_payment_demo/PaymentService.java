@@ -16,4 +16,8 @@ public class PaymentService {
         paymentMethod.pay(amount);
     }
 
+    public String getStatus() {
+        return "Payment service is available";
+    }
+
 }
