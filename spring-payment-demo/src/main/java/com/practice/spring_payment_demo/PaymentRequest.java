@@ -1,13 +1,18 @@
 package com.practice.spring_payment_demo;
 
-public class PaymentRequest {
-    private double amount;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-    public void setAmount(double amount) {
+public class PaymentRequest {
+    @NotNull
+    @Positive
+    private Double amount;
+
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 }

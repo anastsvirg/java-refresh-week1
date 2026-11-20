@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 
 @RestController
@@ -22,13 +24,17 @@ public class PaymentController {
     }
 
     @PostMapping("/payment/process")
-    public ResponseEntity<String> setPaymentStatus(@RequestBody PaymentRequest paymentRequest) {
-        double amount = paymentRequest.getAmount();
-        if (amount <= 0 || !Double.isFinite(amount)) {
-            return ResponseEntity.badRequest().body("Invalid input");
+    public ResponseEntity<PaymentResponse> setPaymentStatus(@Valid @RequestBody PaymentRequest paymentRequest) {
+        Double amount = paymentRequest.getAmount();
+        if (!Double.isFinite(amount)) {
+            return ResponseEntity.badRequest().build();
         }
         paymentService.processPayment(amount);
-        return ResponseEntity.ok("Request accepted");
+        PaymentResponse response = new PaymentResponse(
+                "SUCCESS",
+                amount,
+                "Payment request processed");
+        return ResponseEntity.ok(response);
     }
 
 }
